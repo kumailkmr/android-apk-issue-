@@ -244,7 +244,7 @@ export default function HomeDashboard() {
   const [hasCompletedTask, setHasCompletedTask] = useState(false);
 
   return (
-    <div className="relative w-full h-[892px] max-h-screen sm:max-h-[892px] bg-surface flex flex-col font-sans overflow-hidden border-0 sm:border border-slate-200 sm:rounded-[36px] shadow-2xl">
+    <div className="relative w-full min-h-screen bg-surface flex flex-col font-sans overflow-x-hidden border-0 shadow-none">
       <OfflineStatusBanner />
       {!splashDone && <PremiumSplashScreen onFinish={() => setSplashDone(true)} />}
       
@@ -279,7 +279,7 @@ export default function HomeDashboard() {
       <div 
         ref={mainScrollRef}
         onScroll={handleScroll}
-        className="flex-1 overflow-y-auto no-scrollbar pb-16 relative"
+        className="flex-1 overflow-y-auto no-scrollbar pb-28 relative"
       >
 
         {/* TAB 1: DASHBOARD CORE (Home Tab) */}

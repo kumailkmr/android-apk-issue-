@@ -316,7 +316,7 @@ export const PremiumDonationExperience: React.FC<DonationProps> = ({ triggerToas
               animate={{ y: 0 }}
               exit={{ y: '100%' }}
               transition={{ type: "spring", stiffness: 350, damping: 30 }}
-              className="fixed bottom-0 left-0 right-0 max-w-[412px] mx-auto bg-white rounded-t-3xl shadow-2xl z-50 p-5 flex flex-col gap-4 select-none max-h-[90vh] overflow-y-auto no-scrollbar"
+              className="fixed bottom-0 left-0 right-0 max-w-full lg:max-w-[440px] mx-auto bg-white rounded-t-3xl shadow-2xl z-50 p-5 flex flex-col gap-4 select-none max-h-[90vh] overflow-y-auto no-scrollbar"
             >
               {/* Sheet Drag Indicator Header */}
               <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto shrink-0" />

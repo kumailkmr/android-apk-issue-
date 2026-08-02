@@ -134,7 +134,7 @@ export const FeaturedContentCarousel: React.FC<FeaturedContentCarouselProps> = (
             <h3 className="text-white font-extrabold text-sm tracking-wide leading-tight drop-shadow-md">
               {activeItem.title}
             </h3>
-            <p className="text-emerald-100/90 text-[10.5px] font-medium leading-snug drop-shadow-sm line-clamp-1">
+            <p className="text-emerald-100/90 text-[10.5px] font-medium leading-snug drop-shadow-sm line-clamp-2">
               {activeItem.description}
             </p>
           </div>

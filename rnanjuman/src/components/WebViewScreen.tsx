@@ -102,7 +102,9 @@ export const WebViewScreen: React.FC = () => {
             javaScriptEnabled={true}
             domStorageEnabled={true}
             startInLoadingState={true}
-            scalesPageToFit={true}
+            scalesPageToFit={false}
+            setBuiltInZoomControls={false}
+            showsHorizontalScrollIndicator={false}
             allowsBackForwardNavigationGestures={true}
             originWhitelist={['https://*', 'http://*']}
             onShouldStartLoadWithRequest={(request) => {
