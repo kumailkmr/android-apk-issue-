@@ -16,9 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased bg-slate-950 min-h-screen flex items-center justify-center p-2 sm:p-4">
+      <body className="antialiased bg-slate-50 lg:bg-slate-950 min-h-screen flex items-center justify-center p-0 m-0 overflow-x-hidden">
         <LanguageProvider>
-          <div className="flex items-center justify-center gap-8 w-full max-w-6xl mx-auto">
+          <div className="flex items-center justify-center gap-8 w-full max-w-full lg:max-w-6xl mx-auto min-h-screen p-0 m-0">
             <AndroidFrame>
               {children}
             </AndroidFrame>
