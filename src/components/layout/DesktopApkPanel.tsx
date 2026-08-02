@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { DownloadAPKButton } from '@/components/ui/DownloadAPKButton';
+
 import { APP_CONFIG } from '@/config/appConfig';
 
 interface DesktopApkPanelProps {
@@ -43,11 +43,7 @@ export const DesktopApkPanel: React.FC<DesktopApkPanelProps> = ({ onToast }) => 
         </p>
 
         {/* Reusable Download APK Button */}
-        <DownloadAPKButton 
-          label="📱 Download Mobile Application" 
-          variant="primary" 
-          onToast={onToast} 
-        />
+        
 
         {/* Version & File Size Metadata */}
         <div className="flex items-center justify-between text-[10px] text-slate-400 font-semibold px-1">

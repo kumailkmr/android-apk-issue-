@@ -1,4 +1,4 @@
-name: Build Android Release APK
+name: Build React Native Android Release
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
 
       - name: Setup Java JDK
         uses: actions/setup-java@v4
@@ -24,26 +24,21 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install React Native Dependencies
+        working-directory: ./rnanjuman
+        run: npm install
 
-      - name: Build Next.js Static Export
-        run: npm run build
-        env:
-          NEXT_TELEMETRY_DISABLED: 1
-
-      - name: Sync Capacitor Android
-        run: npx cap sync android
-
-      - name: Build Android Release APK
-        working-directory: ./android
-        run: ./gradlew assembleRelease
+      - name: Build Android Release APK and AAB
+        working-directory: ./rnanjuman/android
+        run: |
+          ./gradlew assembleRelease
+          ./gradlew bundleRelease
 
       - name: Sign APK
-        id: sign_app
+        id: sign_apk
         uses: r0adkll/sign-android-release@v1
         with:
-          releaseDirectory: android/app/build/outputs/apk/release
+          releaseDirectory: rnanjuman/android/app/build/outputs/apk/release
           signingKeyBase64: ${{ secrets.SIGNING_KEY }}
           alias: ${{ secrets.KEY_ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
@@ -51,8 +46,26 @@ jobs:
         env:
           BUILD_TOOLS_VERSION: "34.0.0"
 
-      - name: Upload Release Artifact
+      - name: Sign AAB
+        id: sign_aab
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: rnanjuman/android/app/build/outputs/bundle/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+        env:
+          BUILD_TOOLS_VERSION: "34.0.0"
+
+      - name: Upload APK Release Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: anjuman-demo-release
-          path: ${{steps.sign_app.outputs.signedReleaseFile}}
+          name: anjuman-shari-e-shian-apk
+          path: ${{ steps.sign_apk.outputs.signedReleaseFile }}
+
+      - name: Upload AAB Release Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: anjuman-shari-e-shian-aab
+          path: ${{ steps.sign_aab.outputs.signedReleaseFile }}
