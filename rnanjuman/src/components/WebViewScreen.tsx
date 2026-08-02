@@ -16,7 +16,7 @@ import {
 import { WebView, WebViewNavigation } from 'react-native-webview';
 import NetInfo from '@react-native-community/netinfo';
 
-const WEB_URL = 'http://10.244.36.187:3000'; // Fallback to current local dev server or production URL
+const WEB_URL = 'https://anjuman-sharie-shian.vercel.app'; // Production Vercel URL
 
 export const WebViewScreen: React.FC = () => {
   const webViewRef = useRef<WebView>(null);
