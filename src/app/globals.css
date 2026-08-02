@@ -65,6 +65,11 @@
   --accent-color: #b48a36;
 }
 
+html {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 /* Base resets & Desktop Mock background */
 body {
   background-color: #0c0f14;
@@ -72,10 +77,8 @@ body {
   color: #0f172a;
   min-height: 100vh;
   margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow-x: hidden;
+  max-width: 100vw;
 }
 
 /* Micro interaction hides scrollbars */

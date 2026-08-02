@@ -688,12 +688,12 @@ export const mockEvents: EventAnnouncement[] = [
 
 export const mockMember: MemberProfile = {
   id: "m1",
-  name: "Syed Mohsin Ali Safvi",
-  parentage: "Syed Ghulam Rasool Safvi",
+  name: "Aga Syed Mujtaba Hassan",
+  parentage: "Aga Syed Al Hassan Mosavi",
   cardNumber: "ASS-2026-8941",
   bloodGroup: "O+ve",
   district: "Budgam",
   memberType: "Life Member",
   expiryDate: "2031-12-31",
-  qrValue: "ANJUMAN-SHARI-SHIAN:ASS-2026-8941:SYED-MOHSIN-ALI"
+  qrValue: "ANJUMAN-SHARI-SHIAN:ASS-2026-8941:AGA-SYED-MUJTABA-HASSAN"
 };

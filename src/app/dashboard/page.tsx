@@ -87,7 +87,9 @@ import {
   IoHeartOutline,
   IoGridOutline,
   IoCloseOutline,
-  IoClose
+  IoClose,
+  IoDownloadOutline,
+  IoShareSocialOutline
 } from 'react-icons/io5';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -100,6 +102,61 @@ const ANJUMAN_GALLERY_IMAGES = [
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3RK2l9LlDRkSYxNIm4BbUBQoKEDe20JLwoeR82oSYjb3194NyxGim1Hpr&s=10",
   "https://media.abna24.com/d/2026/06/13/4/3183003.jpg?ts=1781339261000",
   "https://media.abna24.com/d/2026/06/13/3/3183010.jpg?ts=1781339261000",
+];
+
+const NOHA_MOCK_DATA = [
+  { id: 1, title: 'Ya Hussain', reciter: 'Nadeem Sarwar', duration: '8:45', category: 'Muharram', image: 'https://ichef.bbci.co.uk/news/480/cpsprodpb/7ae4/live/262c84f0-1878-11f1-8f1d-d7bdb1ea156f.jpg.webp' },
+  { id: 2, title: 'Abbas Alamdar', reciter: 'Farhan Ali Waris', duration: '12:30', category: 'Ashura', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqiCsJRxvZ6Zd6KeZMfyWjZ7cEUon1pzmT4BU5rWzolUi95XdiR-9GSuNP&s=10' },
+  { id: 3, title: 'Karbala Memories', reciter: 'Mesum Abbas', duration: '10:15', category: 'Safar', image: 'https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=500&q=80' },
+  { id: 4, title: 'Arbaeen Journey', reciter: 'Ali Shanawar', duration: '6:50', category: 'Arbaeen', image: 'https://ichef.bbci.co.uk/news/480/cpsprodpb/7ae4/live/262c84f0-1878-11f1-8f1d-d7bdb1ea156f.jpg.webp' },
+  { id: 5, title: 'Muharram Collection', reciter: 'Mir Hasan Mir', duration: '15:20', category: 'Majlis', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqiCsJRxvZ6Zd6KeZMfyWjZ7cEUon1pzmT4BU5rWzolUi95XdiR-9GSuNP&s=10' },
+  { id: 6, title: 'Ashura Special', reciter: 'Hassan Sadiq', duration: '9:00', category: 'Ashura', image: 'https://images.unsplash.com/photo-1584281722512-eb7df854e48b?w=500&q=80' },
+  { id: 7, title: 'Imam Hussain Tribute', reciter: 'Ali Jee', duration: '7:40', category: 'Tribute', image: 'https://ichef.bbci.co.uk/news/480/cpsprodpb/7ae4/live/262c84f0-1878-11f1-8f1d-d7bdb1ea156f.jpg.webp' },
+  { id: 8, title: 'Bibi Zainab Elegy', reciter: 'Shadman Raza', duration: '11:10', category: 'Elegy', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqiCsJRxvZ6Zd6KeZMfyWjZ7cEUon1pzmT4BU5rWzolUi95XdiR-9GSuNP&s=10' },
+];
+
+const QURAN_MOCK_DATA = [
+  { id: 1, surah: 'Surah Al-Fatiha', qari: 'Mishary Alafasy', duration: '1:05', arabic: 'سُورَةُ ٱلْفَاتِحَةِ', image: 'https://images.unsplash.com/photo-1601142634808-38923eb7c560?w=500&q=80' },
+  { id: 2, surah: 'Surah Yasin', qari: 'Abdul Rahman Al-Sudais', duration: '14:20', arabic: 'سُورَةُ يس', image: 'https://images.unsplash.com/photo-1585036156171-384164a8c675?w=500&q=80' },
+  { id: 3, surah: 'Surah Ar-Rahman', qari: 'Saad Al Ghamdi', duration: '11:45', arabic: 'سُورَةُ ٱلرَّحْمَٰنِ', image: 'https://images.unsplash.com/photo-1601142634808-38923eb7c560?w=500&q=80' },
+  { id: 4, surah: 'Surah Al-Mulk', qari: 'Maher Al Muaiqly', duration: '8:30', arabic: 'سُورَةُ ٱلْمُلْكِ', image: 'https://images.unsplash.com/photo-1585036156171-384164a8c675?w=500&q=80' },
+  { id: 5, surah: 'Surah Al-Kahf', qari: 'Abdur Rahman Al-Ossi', duration: '35:10', arabic: 'سُورَةُ ٱلْكَهْفِ', image: 'https://images.unsplash.com/photo-1601142634808-38923eb7c560?w=500&q=80' },
+  { id: 6, surah: 'Surah Maryam', qari: 'Yasser Al-Dosari', duration: '22:15', arabic: 'سُورَةُ مَرْيَمَ', image: 'https://images.unsplash.com/photo-1585036156171-384164a8c675?w=500&q=80' },
+  { id: 7, surah: 'Surah Al-Waqiah', qari: 'Ahmad Al-Ajmi', duration: '9:50', arabic: 'سُورَةُ ٱلْوَاقِعَةِ', image: 'https://images.unsplash.com/photo-1601142634808-38923eb7c560?w=500&q=80' },
+  { id: 8, surah: 'Surah Al-Insan', qari: 'Hani Ar-Rifai', duration: '7:20', arabic: 'سُورَةُ ٱلْإِنسَانِ', image: 'https://images.unsplash.com/photo-1585036156171-384164a8c675?w=500&q=80' },
+];
+
+const DUAS_MOCK_DATA = [
+  { id: 1, title: 'Morning Dua', arabic: 'دُعَاءُ الصَّبَاح', translation: 'O Allah, by You we enter the morning and by You we enter the evening...', category: 'Morning', image: 'https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=500&q=80' },
+  { id: 2, title: 'Evening Dua', arabic: 'دُعَاءُ المَسَاء', translation: 'O Allah, by You we enter the evening and by You we enter the morning...', category: 'Evening', image: 'https://images.unsplash.com/photo-1599839619722-39751411ea63?w=500&q=80' },
+  { id: 3, title: 'Before Sleeping', arabic: 'بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا', translation: 'In Your name, O Allah, I die and I live.', category: 'Night', image: 'https://images.unsplash.com/photo-1584281722883-9b87f87f4c54?w=500&q=80' },
+  { id: 4, title: 'After Waking Up', arabic: 'الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا', translation: 'All praise is to Allah who gave us life after having taken it...', category: 'Morning', image: 'https://images.unsplash.com/photo-1601142634808-38923eb7c560?w=500&q=80' },
+  { id: 5, title: 'Travel Dua', arabic: 'سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَٰذَا', translation: 'Glory be to Him who has subjected this to us...', category: 'Travel', image: 'https://images.unsplash.com/photo-1598910009624-954f9a0cfaaa?w=500&q=80' },
+  { id: 6, title: 'Entering Mosque', arabic: 'اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ', translation: 'O Allah, open the doors of Your mercy for me.', category: 'Mosque', image: 'https://images.unsplash.com/photo-1585036156171-384164a8c675?w=500&q=80' },
+  { id: 7, title: 'For Parents', arabic: 'رَّبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا', translation: 'My Lord, have mercy upon them as they brought me up...', category: 'Family', image: 'https://images.unsplash.com/photo-1584281722741-9fb0b04c8f5e?w=500&q=80' },
+  { id: 8, title: 'For Rizq', arabic: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا', translation: 'O Allah, I ask You for beneficial knowledge, good provision...', category: 'Provision', image: 'https://images.unsplash.com/photo-1584281722512-eb7df854e48b?w=500&q=80' },
+];
+
+const SPEECH_MOCK_DATA = [
+  { id: 1, title: 'Importance of Salah', speaker: 'Aga Syed Hassan', duration: '45:00', category: 'Worship', image: 'https://ichef.bbci.co.uk/news/480/cpsprodpb/7ae4/live/262c84f0-1878-11f1-8f1d-d7bdb1ea156f.jpg.webp' },
+  { id: 2, title: 'Life of Imam Hussain (AS)', speaker: 'Syed Ali Safvi', duration: '55:30', category: 'Biography', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqiCsJRxvZ6Zd6KeZMfyWjZ7cEUon1pzmT4BU5rWzolUi95XdiR-9GSuNP&s=10' },
+  { id: 3, title: 'Lessons from Karbala', speaker: 'Moulana Kalbe Jawad', duration: '60:15', category: 'Muharram', image: 'https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=500&q=80' },
+  { id: 4, title: 'Youth and Islam', speaker: 'Ammar Nakshawani', duration: '40:50', category: 'Youth', image: 'https://ichef.bbci.co.uk/news/480/cpsprodpb/7ae4/live/262c84f0-1878-11f1-8f1d-d7bdb1ea156f.jpg.webp' },
+  { id: 5, title: 'The Holy Quran', speaker: 'Syed Jawad Naqvi', duration: '35:20', category: 'Quran', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqiCsJRxvZ6Zd6KeZMfyWjZ7cEUon1pzmT4BU5rWzolUi95XdiR-9GSuNP&s=10' },
+  { id: 6, title: 'Islamic Ethics', speaker: 'Aga Syed Mohammad', duration: '50:00', category: 'Ethics', image: 'https://images.unsplash.com/photo-1584281722512-eb7df854e48b?w=500&q=80' },
+  { id: 7, title: 'Family Values', speaker: 'Hasnain Rajabali', duration: '42:40', category: 'Family', image: 'https://ichef.bbci.co.uk/news/480/cpsprodpb/7ae4/live/262c84f0-1878-11f1-8f1d-d7bdb1ea156f.jpg.webp' },
+  { id: 8, title: 'Ramadan Preparation', speaker: 'Aga Syed Mujtaba', duration: '38:10', category: 'Ramadan', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqiCsJRxvZ6Zd6KeZMfyWjZ7cEUon1pzmT4BU5rWzolUi95XdiR-9GSuNP&s=10' },
+];
+
+const CHANTS_MOCK_DATA = [
+  { id: 1, title: 'Dua Kumayl', reciter: 'Abazar Halawaji', duration: '32:15', category: 'Supplication', image: 'https://images.unsplash.com/photo-1601142634808-38923eb7c560?w=500&q=80' },
+  { id: 2, title: 'Ziyarat Ashura', reciter: 'Ali Fani', duration: '14:20', category: 'Ziyarat', image: 'https://images.unsplash.com/photo-1585036156171-384164a8c675?w=500&q=80' },
+  { id: 3, title: 'Dua Nudba', reciter: 'Mehdi Samavati', duration: '41:45', category: 'Supplication', image: 'https://images.unsplash.com/photo-1601142634808-38923eb7c560?w=500&q=80' },
+  { id: 4, title: 'Munajat of Imam Ali', reciter: 'Maytham Al-Tamar', duration: '18:30', category: 'Munajat', image: 'https://images.unsplash.com/photo-1585036156171-384164a8c675?w=500&q=80' },
+  { id: 5, title: 'Dua Tawassul', reciter: 'Mohsen Farahmand', duration: '15:10', category: 'Supplication', image: 'https://images.unsplash.com/photo-1601142634808-38923eb7c560?w=500&q=80' },
+  { id: 6, title: 'Asma ul Husna', reciter: 'Various Artists', duration: '12:15', category: 'Names of Allah', image: 'https://images.unsplash.com/photo-1585036156171-384164a8c675?w=500&q=80' },
+  { id: 7, title: 'Salaam Collection', reciter: 'Nadeem Sarwar', duration: '29:50', category: 'Salaam', image: 'https://images.unsplash.com/photo-1601142634808-38923eb7c560?w=500&q=80' },
+  { id: 8, title: 'Manqabat Imam Ali', reciter: 'Mir Hasan Mir', duration: '17:20', category: 'Manqabat', image: 'https://images.unsplash.com/photo-1585036156171-384164a8c675?w=500&q=80' },
 ];
 
 export default function HomeDashboard() {
@@ -147,6 +204,22 @@ export default function HomeDashboard() {
   
   const [showGallery, setShowGallery] = useState(false);
   const [activeGalleryIdx, setActiveGalleryIdx] = useState(0);
+
+  const [showNohaDetail, setShowNohaDetail] = useState(false);
+  const [activeNoha, setActiveNoha] = useState<any>(null);
+
+  const [showQuranDetail, setShowQuranDetail] = useState(false);
+  const [activeQuran, setActiveQuran] = useState<any>(null);
+
+  const [showDuaDetail, setShowDuaDetail] = useState(false);
+  const [activeDua, setActiveDua] = useState<any>(null);
+
+  const [showSpeechDetail, setShowSpeechDetail] = useState(false);
+  const [activeSpeech, setActiveSpeech] = useState<any>(null);
+
+  const [showChantDetail, setShowChantDetail] = useState(false);
+  const [activeChant, setActiveChant] = useState<any>(null);
+
   const [splashDone, setSplashDone] = useState(false);
   const mainScrollRef = React.useRef<HTMLDivElement>(null);
 
@@ -447,6 +520,196 @@ export default function HomeDashboard() {
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={imgSrc} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* NOHA GALLERY (NEW) */}
+            <div className="flex flex-col gap-3">
+              <div className="flex justify-between items-center px-0.5">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Noha Gallery</span>
+                </div>
+                <button className="text-[10px] font-bold text-accent uppercase tracking-wider hover:underline" onClick={() => triggerToast("Loading Noha Collection...", "info")}>View All</button>
+              </div>
+              <div className="flex gap-3 overflow-x-auto no-scrollbar scroll-smooth px-0.5">
+                {NOHA_MOCK_DATA.map((noha, idx) => (
+                  <div 
+                    key={idx} 
+                    onClick={() => { setActiveNoha(noha); setShowNohaDetail(true); }}
+                    className="min-w-[120px] max-w-[120px] shrink-0 flex flex-col gap-1.5"
+                  >
+                    <div className="w-full h-[85px] rounded-xl overflow-hidden shadow-soft cursor-pointer relative group border border-slate-50 bg-slate-100">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={noha.image} alt={noha.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                      <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                        <IoPlayCircleOutline className="text-white text-3xl opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all" />
+                      </div>
+                      <div className="absolute top-1.5 right-1.5 flex gap-1">
+                        <button className="p-0.5 bg-black/40 rounded backdrop-blur-md text-white/90 hover:text-white"><IoHeartOutline size={12} /></button>
+                      </div>
+                      <div className="absolute bottom-1.5 right-1.5 bg-black/60 px-1.5 py-0.5 rounded text-[8.5px] font-bold text-white tracking-wide">
+                        {noha.duration}
+                      </div>
+                    </div>
+                    <div className="flex flex-col px-0.5">
+                      <span className="text-[10px] font-bold text-slate-800 line-clamp-1">{noha.title}</span>
+                      <span className="text-[9px] font-semibold text-slate-500 line-clamp-1">{noha.reciter}</span>
+                      <span className="text-[8px] font-medium text-emerald-600 mt-0.5">{noha.category}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* QURAN RECITATIONS (NEW) */}
+            <div className="flex flex-col gap-3">
+              <div className="flex justify-between items-center px-0.5">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Quran Recitations</span>
+                </div>
+                <button className="text-[10px] font-bold text-accent uppercase tracking-wider hover:underline" onClick={() => triggerToast("Loading Recitations...", "info")}>View All</button>
+              </div>
+              <div className="flex gap-3 overflow-x-auto no-scrollbar scroll-smooth px-0.5">
+                {QURAN_MOCK_DATA.map((quran, idx) => (
+                  <div 
+                    key={idx} 
+                    onClick={() => { setActiveQuran(quran); setShowQuranDetail(true); }}
+                    className="min-w-[120px] max-w-[120px] shrink-0 flex flex-col gap-1.5"
+                  >
+                    <div className="w-full h-[85px] rounded-xl overflow-hidden shadow-soft cursor-pointer relative group border border-slate-50 bg-slate-100">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={quran.image} alt={quran.surah} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                      <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                        <IoPlayCircleOutline className="text-white text-3xl opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all" />
+                      </div>
+                      <div className="absolute top-1.5 right-1.5 flex gap-1">
+                        <button className="p-0.5 bg-black/40 rounded backdrop-blur-md text-white/90 hover:text-white"><IoBookmarkOutline size={12} /></button>
+                      </div>
+                      <div className="absolute bottom-1.5 right-1.5 bg-black/60 px-1.5 py-0.5 rounded text-[8.5px] font-bold text-white tracking-wide">
+                        {quran.duration}
+                      </div>
+                    </div>
+                    <div className="flex flex-col px-0.5">
+                      <span className="text-[10px] font-bold text-slate-800 line-clamp-1">{quran.surah}</span>
+                      <span className="text-[9px] font-semibold text-slate-500 line-clamp-1">{quran.qari}</span>
+                      <span className="text-[10px] font-bold text-accent font-arabic mt-0.5" dir="rtl">{quran.arabic}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* DAILY DUAS (NEW) */}
+            <div className="flex flex-col gap-3">
+              <div className="flex justify-between items-center px-0.5">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xl text-primary"><AnimatedIcon name="prayer-hands" size={16} animation="scale" /></span>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Daily Duas</span>
+                </div>
+                <button className="text-[10px] font-bold text-accent uppercase tracking-wider hover:underline" onClick={() => triggerToast("Loading Duas...", "info")}>View All</button>
+              </div>
+              <div className="flex gap-3 overflow-x-auto no-scrollbar scroll-smooth px-0.5">
+                {DUAS_MOCK_DATA.map((dua, idx) => (
+                  <div 
+                    key={idx} 
+                    onClick={() => { setActiveDua(dua); setShowDuaDetail(true); }}
+                    className="min-w-[120px] max-w-[120px] shrink-0 flex flex-col gap-1.5"
+                  >
+                    <div className="w-full h-[85px] rounded-xl overflow-hidden shadow-soft cursor-pointer relative group border border-slate-50 bg-slate-100">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={dua.image} alt={dua.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                      <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                        <IoPlayCircleOutline className="text-white text-3xl opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all" />
+                      </div>
+                      <div className="absolute top-1.5 right-1.5 flex gap-1">
+                        <button className="p-0.5 bg-black/40 rounded backdrop-blur-md text-white/90 hover:text-white"><IoHeartOutline size={12} /></button>
+                      </div>
+                      <div className="absolute bottom-1.5 right-1.5 bg-black/60 px-1.5 py-0.5 rounded text-[8.5px] font-bold text-white tracking-wide">
+                        {dua.category}
+                      </div>
+                    </div>
+                    <div className="flex flex-col px-0.5">
+                      <span className="text-[10px] font-bold text-slate-800 line-clamp-1">{dua.title}</span>
+                      <span className="text-[10px] font-bold text-accent font-arabic mt-0.5" dir="rtl">{dua.arabic}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* SPEECH LECTURES (NEW) */}
+            <div className="flex flex-col gap-3">
+              <div className="flex justify-between items-center px-0.5">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xl text-primary"><AnimatedIcon name="video" size={16} animation="scale" /></span>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Speech Lectures</span>
+                </div>
+                <button className="text-[10px] font-bold text-accent uppercase tracking-wider hover:underline" onClick={() => triggerToast("Loading Lectures...", "info")}>View All</button>
+              </div>
+              <div className="flex gap-3 overflow-x-auto no-scrollbar scroll-smooth px-0.5">
+                {SPEECH_MOCK_DATA.map((speech, idx) => (
+                  <div 
+                    key={idx} 
+                    onClick={() => { setActiveSpeech(speech); setShowSpeechDetail(true); }}
+                    className="min-w-[120px] max-w-[120px] shrink-0 flex flex-col gap-1.5"
+                  >
+                    <div className="w-full h-[85px] rounded-xl overflow-hidden shadow-soft cursor-pointer relative group border border-slate-50 bg-slate-100">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={speech.image} alt={speech.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                      <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                        <IoPlayCircleOutline className="text-white text-3xl opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all" />
+                      </div>
+                      <div className="absolute top-1.5 right-1.5 flex gap-1">
+                        <button className="p-0.5 bg-black/40 rounded backdrop-blur-md text-white/90 hover:text-white"><IoBookmarkOutline size={12} /></button>
+                      </div>
+                      <div className="absolute bottom-1.5 right-1.5 bg-black/60 px-1.5 py-0.5 rounded text-[8.5px] font-bold text-white tracking-wide">
+                        {speech.duration}
+                      </div>
+                    </div>
+                    <div className="flex flex-col px-0.5">
+                      <span className="text-[10px] font-bold text-slate-800 line-clamp-1">{speech.title}</span>
+                      <span className="text-[9px] font-semibold text-slate-500 line-clamp-1">{speech.speaker}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* PRAYER & CHANTS (NEW) */}
+            <div className="flex flex-col gap-3">
+              <div className="flex justify-between items-center px-0.5">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xl text-primary"><AnimatedIcon name="audio" size={16} animation="scale" /></span>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Prayer & Chants</span>
+                </div>
+                <button className="text-[10px] font-bold text-accent uppercase tracking-wider hover:underline" onClick={() => triggerToast("Loading Chants...", "info")}>View All</button>
+              </div>
+              <div className="flex gap-3 overflow-x-auto no-scrollbar scroll-smooth px-0.5">
+                {CHANTS_MOCK_DATA.map((chant, idx) => (
+                  <div 
+                    key={idx} 
+                    onClick={() => { setActiveChant(chant); setShowChantDetail(true); }}
+                    className="min-w-[120px] max-w-[120px] shrink-0 flex flex-col gap-1.5"
+                  >
+                    <div className="w-full h-[85px] rounded-xl overflow-hidden shadow-soft cursor-pointer relative group border border-slate-50 bg-slate-100">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={chant.image} alt={chant.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                      <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                        <IoPlayCircleOutline className="text-white text-3xl opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all" />
+                      </div>
+                      <div className="absolute top-1.5 right-1.5 flex gap-1">
+                        <button className="p-0.5 bg-black/40 rounded backdrop-blur-md text-white/90 hover:text-white"><IoHeartOutline size={12} /></button>
+                      </div>
+                      <div className="absolute bottom-1.5 right-1.5 bg-black/60 px-1.5 py-0.5 rounded text-[8.5px] font-bold text-white tracking-wide">
+                        {chant.duration}
+                      </div>
+                    </div>
+                    <div className="flex flex-col px-0.5">
+                      <span className="text-[10px] font-bold text-slate-800 line-clamp-1">{chant.title}</span>
+                      <span className="text-[9px] font-semibold text-slate-500 line-clamp-1">{chant.reciter}</span>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -1138,20 +1401,46 @@ export default function HomeDashboard() {
           ) : (
             <div className="flex flex-col gap-3">
               <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Search Results</span>
-              {mockLectures.filter(l => l.title['en'].toLowerCase().includes(searchQuery.toLowerCase())).length > 0 ? (
-                mockLectures.filter(l => l.title['en'].toLowerCase().includes(searchQuery.toLowerCase())).map(l => (
-                  <div 
-                    key={l.id} 
-                    onClick={() => { setSearchOpen(false); setActiveLecture(l); }}
-                    className="p-3 border border-slate-50 rounded-2xl hover:bg-slate-50 cursor-pointer"
-                  >
-                    <h4 className="text-xs font-bold text-slate-800 truncate">{l.title['en']}</h4>
-                    <span className="text-[9px] text-slate-400 font-bold block mt-0.5">{l.speaker['en']}</span>
+              {(() => {
+                const sq = searchQuery.toLowerCase();
+                const resLectures = mockLectures.filter(l => l.title['en'].toLowerCase().includes(sq) || l.speaker['en'].toLowerCase().includes(sq));
+                const resDuas = DUAS_MOCK_DATA.filter(d => d.title.toLowerCase().includes(sq) || d.category.toLowerCase().includes(sq));
+                const resSpeech = SPEECH_MOCK_DATA.filter(s => s.title.toLowerCase().includes(sq) || s.speaker.toLowerCase().includes(sq));
+                const resChants = CHANTS_MOCK_DATA.filter(c => c.title.toLowerCase().includes(sq) || c.reciter.toLowerCase().includes(sq));
+                
+                const hasResults = resLectures.length > 0 || resDuas.length > 0 || resSpeech.length > 0 || resChants.length > 0;
+                
+                if (!hasResults) return <EmptyState title="No results found" description="Adjust search spelling and query options." icon="🔍" />;
+                
+                return (
+                  <div className="flex flex-col gap-2">
+                    {resLectures.map(l => (
+                      <div key={'lec_'+l.id} onClick={() => { setSearchOpen(false); setActiveLecture(l); }} className="p-3 border border-slate-50 rounded-2xl hover:bg-slate-50 cursor-pointer">
+                        <h4 className="text-xs font-bold text-slate-800 truncate">{l.title['en']}</h4>
+                        <span className="text-[9px] text-slate-400 font-bold block mt-0.5">{l.speaker['en']} (Ruling)</span>
+                      </div>
+                    ))}
+                    {resDuas.map(d => (
+                      <div key={'dua_'+d.id} onClick={() => { setSearchOpen(false); setActiveDua(d); setShowDuaDetail(true); }} className="p-3 border border-slate-50 rounded-2xl hover:bg-slate-50 cursor-pointer">
+                        <h4 className="text-xs font-bold text-slate-800 truncate">{d.title}</h4>
+                        <span className="text-[9px] text-slate-400 font-bold block mt-0.5">Dua • {d.category}</span>
+                      </div>
+                    ))}
+                    {resSpeech.map(s => (
+                      <div key={'sp_'+s.id} onClick={() => { setSearchOpen(false); setActiveSpeech(s); setShowSpeechDetail(true); }} className="p-3 border border-slate-50 rounded-2xl hover:bg-slate-50 cursor-pointer">
+                        <h4 className="text-xs font-bold text-slate-800 truncate">{s.title}</h4>
+                        <span className="text-[9px] text-slate-400 font-bold block mt-0.5">Lecture • {s.speaker}</span>
+                      </div>
+                    ))}
+                    {resChants.map(c => (
+                      <div key={'ch_'+c.id} onClick={() => { setSearchOpen(false); setActiveChant(c); setShowChantDetail(true); }} className="p-3 border border-slate-50 rounded-2xl hover:bg-slate-50 cursor-pointer">
+                        <h4 className="text-xs font-bold text-slate-800 truncate">{c.title}</h4>
+                        <span className="text-[9px] text-slate-400 font-bold block mt-0.5">Chant • {c.reciter}</span>
+                      </div>
+                    ))}
                   </div>
-                ))
-              ) : (
-                <EmptyState title="No results found" description="Adjust search spelling and query options." icon="🔍" />
-              )}
+                );
+              })()}
             </div>
           )}
         </div>
@@ -1498,6 +1787,252 @@ export default function HomeDashboard() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* NOHA DETAIL MODAL */}
+      <BottomSheet isOpen={showNohaDetail} onClose={() => setShowNohaDetail(false)}>
+        {activeNoha && (
+          <div className="flex flex-col gap-4">
+            <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden relative shadow-inner">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={activeNoha.image} alt={activeNoha.title} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
+                <div className="flex flex-col">
+                  <span className="text-white font-bold text-lg">{activeNoha.title}</span>
+                  <span className="text-white/80 font-medium text-sm">{activeNoha.reciter} • {activeNoha.duration}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between mt-2 px-2">
+              <div className="flex gap-3">
+                <button className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-transform" onClick={() => triggerToast("Playing audio...", "success")}>
+                  <IoPlayCircleOutline size={28} />
+                </button>
+                <button className="w-12 h-12 bg-slate-100 text-slate-700 rounded-full flex items-center justify-center active:scale-95 transition-transform" onClick={() => triggerToast("Downloading audio...", "info")}>
+                  <IoDownloadOutline size={22} />
+                </button>
+              </div>
+              <div className="flex gap-3">
+                <button className="w-12 h-12 bg-slate-100 text-slate-700 rounded-full flex items-center justify-center active:scale-95 transition-transform" onClick={() => triggerToast("Added to favorites!", "success")}>
+                  <IoHeartOutline size={22} />
+                </button>
+                <button className="w-12 h-12 bg-slate-100 text-slate-700 rounded-full flex items-center justify-center active:scale-95 transition-transform" onClick={() => triggerToast("Opening share options...", "info")}>
+                  <IoShareSocialOutline size={22} />
+                </button>
+              </div>
+            </div>
+
+            <div className="px-2 mt-4 flex flex-col gap-2 pb-4">
+              <h4 className="text-xs font-bold text-slate-800 uppercase tracking-widest border-b border-slate-100 pb-2">Description</h4>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Beautiful and heart-touching Noha recitation by {activeNoha.reciter} for the category of {activeNoha.category}. Listen and reflect upon the tragedy of Karbala and the sacrifices of Ahl al-Bayt (AS).
+              </p>
+              <div className="mt-4 p-4 bg-slate-50 rounded-2xl border border-slate-100 text-center">
+                <span className="text-slate-400 text-sm font-medium italic">Lyrics unavailable for this recitation</span>
+              </div>
+            </div>
+          </div>
+        )}
+      </BottomSheet>
+
+      {/* QURAN RECITATION DETAIL MODAL */}
+      <BottomSheet isOpen={showQuranDetail} onClose={() => setShowQuranDetail(false)}>
+        {activeQuran && (
+          <div className="flex flex-col gap-4">
+            <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden relative shadow-inner">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={activeQuran.image} alt={activeQuran.surah} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-4">
+                <div className="flex flex-col w-full">
+                  <div className="flex justify-between items-end w-full">
+                    <div className="flex flex-col">
+                      <span className="text-white font-bold text-lg">{activeQuran.surah}</span>
+                      <span className="text-white/80 font-medium text-sm">{activeQuran.qari}</span>
+                    </div>
+                    <span className="text-accent font-arabic text-2xl drop-shadow-md" dir="rtl">{activeQuran.arabic}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between mt-2 px-2">
+              <div className="flex gap-3">
+                <button className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-transform" onClick={() => triggerToast("Playing Surah...", "success")}>
+                  <IoPlayCircleOutline size={28} />
+                </button>
+                <button className="w-12 h-12 bg-slate-100 text-slate-700 rounded-full flex items-center justify-center active:scale-95 transition-transform" onClick={() => triggerToast("Downloading Surah...", "info")}>
+                  <IoDownloadOutline size={22} />
+                </button>
+              </div>
+              <div className="flex gap-3">
+                <button className="w-12 h-12 bg-slate-100 text-slate-700 rounded-full flex items-center justify-center active:scale-95 transition-transform" onClick={() => triggerToast("Bookmarked Surah!", "success")}>
+                  <IoBookmarkOutline size={22} />
+                </button>
+                <button className="w-12 h-12 bg-slate-100 text-slate-700 rounded-full flex items-center justify-center active:scale-95 transition-transform" onClick={() => triggerToast("Opening share options...", "info")}>
+                  <IoShareSocialOutline size={22} />
+                </button>
+              </div>
+            </div>
+
+            <div className="px-2 mt-4 flex flex-col gap-2 pb-4">
+              <h4 className="text-xs font-bold text-slate-800 uppercase tracking-widest border-b border-slate-100 pb-2">Recitation Details</h4>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Listen to {activeQuran.surah} ({activeQuran.arabic}) beautifully recited by {activeQuran.qari}. 
+                Duration: {activeQuran.duration}.
+              </p>
+              <div className="mt-4 p-4 bg-emerald-50 rounded-2xl border border-emerald-100 text-center flex flex-col gap-2">
+                <span className="text-emerald-800 text-lg font-arabic" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+                <span className="text-emerald-600 text-xs font-medium mt-1">In the name of Allah, the Entirely Merciful, the Especially Merciful.</span>
+              </div>
+            </div>
+          </div>
+        )}
+      </BottomSheet>
+
+      {/* DAILY DUA DETAIL MODAL */}
+      <BottomSheet isOpen={showDuaDetail} onClose={() => setShowDuaDetail(false)}>
+        {activeDua && (
+          <div className="flex flex-col gap-4">
+            <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden relative shadow-inner">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={activeDua.image} alt={activeDua.title} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-4">
+                <div className="flex flex-col w-full">
+                  <div className="flex justify-between items-end w-full">
+                    <div className="flex flex-col">
+                      <span className="text-white font-bold text-lg">{activeDua.title}</span>
+                      <span className="text-white/80 font-medium text-sm">{activeDua.category}</span>
+                    </div>
+                    <span className="text-accent font-arabic text-2xl drop-shadow-md" dir="rtl">{activeDua.arabic}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between mt-2 px-2">
+              <div className="flex gap-3">
+                <button className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-transform" onClick={() => triggerToast("Playing Audio...", "success")}>
+                  <IoPlayCircleOutline size={28} />
+                </button>
+                <button className="w-12 h-12 bg-slate-100 text-slate-700 rounded-full flex items-center justify-center active:scale-95 transition-transform" onClick={() => triggerToast("Downloading...", "info")}>
+                  <IoDownloadOutline size={22} />
+                </button>
+              </div>
+              <div className="flex gap-3">
+                <button className="w-12 h-12 bg-slate-100 text-slate-700 rounded-full flex items-center justify-center active:scale-95 transition-transform" onClick={() => triggerToast("Added to favorites!", "success")}>
+                  <IoHeartOutline size={22} />
+                </button>
+                <button className="w-12 h-12 bg-slate-100 text-slate-700 rounded-full flex items-center justify-center active:scale-95 transition-transform" onClick={() => triggerToast("Opening share options...", "info")}>
+                  <IoShareSocialOutline size={22} />
+                </button>
+              </div>
+            </div>
+
+            <div className="px-2 mt-4 flex flex-col gap-2 pb-4">
+              <h4 className="text-xs font-bold text-slate-800 uppercase tracking-widest border-b border-slate-100 pb-2">Translation</h4>
+              <p className="text-sm text-slate-600 leading-relaxed italic">
+                "{activeDua.translation}"
+              </p>
+              <div className="mt-4 p-4 bg-emerald-50 rounded-2xl border border-emerald-100 text-center flex flex-col gap-2">
+                <span className="text-emerald-800 text-lg font-arabic leading-loose" dir="rtl">{activeDua.arabic}</span>
+              </div>
+            </div>
+          </div>
+        )}
+      </BottomSheet>
+
+      {/* SPEECH LECTURE DETAIL MODAL */}
+      <BottomSheet isOpen={showSpeechDetail} onClose={() => setShowSpeechDetail(false)}>
+        {activeSpeech && (
+          <div className="flex flex-col gap-4">
+            <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden relative shadow-inner bg-black">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={activeSpeech.image} alt={activeSpeech.title} className="w-full h-full object-cover opacity-80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
+                <div className="flex flex-col">
+                  <span className="text-white font-bold text-lg">{activeSpeech.title}</span>
+                  <span className="text-white/80 font-medium text-sm">{activeSpeech.speaker} • {activeSpeech.duration}</span>
+                </div>
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                 <button className="w-16 h-16 bg-accent text-white rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-transform" onClick={() => triggerToast("Playing Lecture...", "success")}>
+                  <IoPlayCircleOutline size={36} />
+                </button>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between mt-2 px-2">
+              <div className="flex gap-3">
+                <button className="w-12 h-12 bg-slate-100 text-slate-700 rounded-full flex items-center justify-center active:scale-95 transition-transform" onClick={() => triggerToast("Downloading video...", "info")}>
+                  <IoDownloadOutline size={22} />
+                </button>
+              </div>
+              <div className="flex gap-3">
+                <button className="w-12 h-12 bg-slate-100 text-slate-700 rounded-full flex items-center justify-center active:scale-95 transition-transform" onClick={() => triggerToast("Bookmarked!", "success")}>
+                  <IoBookmarkOutline size={22} />
+                </button>
+                <button className="w-12 h-12 bg-slate-100 text-slate-700 rounded-full flex items-center justify-center active:scale-95 transition-transform" onClick={() => triggerToast("Opening share options...", "info")}>
+                  <IoShareSocialOutline size={22} />
+                </button>
+              </div>
+            </div>
+
+            <div className="px-2 mt-4 flex flex-col gap-2 pb-4">
+              <h4 className="text-xs font-bold text-slate-800 uppercase tracking-widest border-b border-slate-100 pb-2">Description</h4>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                An insightful lecture on {activeSpeech.title} delivered by {activeSpeech.speaker}. Explores important aspects of {activeSpeech.category} with references and practical guidance.
+              </p>
+            </div>
+          </div>
+        )}
+      </BottomSheet>
+
+      {/* CHANT DETAIL MODAL */}
+      <BottomSheet isOpen={showChantDetail} onClose={() => setShowChantDetail(false)}>
+        {activeChant && (
+          <div className="flex flex-col gap-4">
+            <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden relative shadow-inner">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={activeChant.image} alt={activeChant.title} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
+                <div className="flex flex-col">
+                  <span className="text-white font-bold text-lg">{activeChant.title}</span>
+                  <span className="text-white/80 font-medium text-sm">{activeChant.reciter} • {activeChant.duration}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between mt-2 px-2">
+              <div className="flex gap-3">
+                <button className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-transform" onClick={() => triggerToast("Playing...", "success")}>
+                  <IoPlayCircleOutline size={28} />
+                </button>
+                <button className="w-12 h-12 bg-slate-100 text-slate-700 rounded-full flex items-center justify-center active:scale-95 transition-transform" onClick={() => triggerToast("Downloading...", "info")}>
+                  <IoDownloadOutline size={22} />
+                </button>
+              </div>
+              <div className="flex gap-3">
+                <button className="w-12 h-12 bg-slate-100 text-slate-700 rounded-full flex items-center justify-center active:scale-95 transition-transform" onClick={() => triggerToast("Added to favorites!", "success")}>
+                  <IoHeartOutline size={22} />
+                </button>
+                <button className="w-12 h-12 bg-slate-100 text-slate-700 rounded-full flex items-center justify-center active:scale-95 transition-transform" onClick={() => triggerToast("Opening share options...", "info")}>
+                  <IoShareSocialOutline size={22} />
+                </button>
+              </div>
+            </div>
+
+            <div className="px-2 mt-4 flex flex-col gap-2 pb-4">
+              <h4 className="text-xs font-bold text-slate-800 uppercase tracking-widest border-b border-slate-100 pb-2">Description</h4>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Beautiful {activeChant.category} recitation of {activeChant.title} by {activeChant.reciter}.
+              </p>
+              <div className="mt-4 p-4 bg-slate-50 rounded-2xl border border-slate-100 text-center">
+                <span className="text-slate-400 text-sm font-medium italic">Lyrics unavailable for this chant</span>
+              </div>
+            </div>
+          </div>
+        )}
+      </BottomSheet>
 
       {/* TOAST SYSTEM WIDGET */}
       <Toast 

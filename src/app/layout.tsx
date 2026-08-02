@@ -25,13 +25,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased bg-slate-50 lg:bg-slate-950 min-h-screen flex items-center justify-center p-0 m-0 overflow-x-hidden">
+      <body className="antialiased bg-slate-50 min-h-screen w-full overflow-x-hidden p-0 m-0">
         <LanguageProvider>
-          <div className="flex items-center justify-center gap-8 w-full max-w-full lg:max-w-6xl mx-auto min-h-screen p-0 m-0">
-            <AndroidFrame>
-              {children}
-            </AndroidFrame>
-            <DesktopApkPanel />
+          <div className="w-full min-h-screen flex flex-col bg-surface relative overflow-x-hidden">
+            {children}
           </div>
         </LanguageProvider>
       </body>

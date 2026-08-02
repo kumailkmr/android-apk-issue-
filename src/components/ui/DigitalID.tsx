@@ -78,8 +78,8 @@ export const DigitalID: React.FC = () => {
 
               {/* Photo placeholder */}
               <div className="w-16 h-18 rounded-lg bg-emerald-950/50 border border-emerald-400/30 flex flex-col items-center justify-center relative overflow-hidden backdrop-blur-md shadow-inner shrink-0 p-1">
-                <div className="w-full h-full bg-slate-800 rounded flex items-center justify-center">
-                    <span className="text-2xl opacity-50 grayscale">👤</span>
+                <div className="w-full h-full rounded flex items-center justify-center overflow-hidden bg-slate-800">
+                  <img src="https://www.knskashmir.com/userfiles/image/639043840499919898_IMG-20260119-WA0026.jpg" alt="Member Photo" className="w-full h-full object-cover" />
                 </div>
               </div>
             </div>
